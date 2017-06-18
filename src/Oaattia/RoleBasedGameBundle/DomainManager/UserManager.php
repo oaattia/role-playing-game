@@ -72,7 +72,7 @@ class UserManager
     }
 
     /**
-     * Reset the characters
+     * Reset the characters if the both users completed their turn
      *
      * @param User $user
      * @param User $currentUser

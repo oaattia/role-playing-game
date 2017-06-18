@@ -5,7 +5,6 @@ namespace Oaattia\RoleBasedGameBundle\DomainManager;
 
 
 use Doctrine\ORM\EntityManagerInterface;
-use Oaattia\RoleBasedGameBundle\Entity\Character;
 use Oaattia\RoleBasedGameBundle\Entity\User;
 
 class UserManager
@@ -23,6 +22,7 @@ class UserManager
      * UserManager constructor.
      *
      * @param EntityManagerInterface $entityManager
+     * @param User $user
      */
     public function __construct(
         EntityManagerInterface $entityManager,
@@ -54,16 +54,8 @@ class UserManager
     public function performAttackTo(User $user, User $currentUser)
     {
         // let reset the status and the turn of both want to attack each others again
-        if (
-            $user->getCharacter()->getStatus() == 'attacked' &&
-            $user->getCharacter()->getNextTurn() == true &&
-            $currentUser->getCharacter()->getStatus() == 'attacked' &&
-            $currentUser->getCharacter()->getNextTurn() == true
-        ) {
-            $user->getCharacter()->setNextTurn(false);
-            $currentUser->getCharacter()->setNextTurn(false);
-        }
-        
+        $this->restCharactersIfTurnCompleted($user, $currentUser);
+
         $user->getCharacter()->attack();
 
         $attack = $user->getCharacter()->getAttack();
@@ -77,5 +69,24 @@ class UserManager
         $this->entityManager->persist($user->getCharacter());
         $this->entityManager->flush();
 
+    }
+
+    /**
+     * Reset the characters
+     *
+     * @param User $user
+     * @param User $currentUser
+     */
+    private function restCharactersIfTurnCompleted(User $user, User $currentUser)
+    {
+        if (
+            $user->getCharacter()->getStatus() == 'attacked' &&
+            $user->getCharacter()->getNextTurn() == true &&
+            $currentUser->getCharacter()->getStatus() == 'attacked' &&
+            $currentUser->getCharacter()->getNextTurn() == true
+        ) {
+            $user->getCharacter()->setNextTurn(false);
+            $currentUser->getCharacter()->setNextTurn(false);
+        }
     }
 }

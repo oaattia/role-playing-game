@@ -13,6 +13,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ListUsersCommand extends ContainerAwareCommand
 {
+    use CommandHelper;
+
     /**
      * @var EntityManagerInterface
      */
@@ -42,6 +44,7 @@ class ListUsersCommand extends ContainerAwareCommand
     {
         $limit = null;
         $offset = null;
+        $header = ['id', 'email'];
 
         if ($input->getOption('limit')) {
             $limit = $input->getOption('limit');
@@ -53,27 +56,10 @@ class ListUsersCommand extends ContainerAwareCommand
 
         $rows = $this->getUsers($limit, $offset);
 
-        $this->renderTable($output, $rows);
+        return $this->renderTable($output, $header, $rows);
 
     }
 
-    /**
-     * Render the output users
-     *
-     * @param OutputInterface $output
-     * @param $rows
-     */
-    protected function renderTable(OutputInterface $output, $rows):void
-    {
-        $table = new Table($output);
-
-        $table
-            ->setHeaders(['id', 'email'])
-            ->setRows($rows);
-
-
-        $table->render();
-    }
 
     /**
      * Get the users

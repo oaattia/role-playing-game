@@ -41,6 +41,18 @@
             <tag name="console.command"/>
         </service>
 
+
+        <service class="Oaattia\RoleBasedGameBundle\Command\ListUserCharacterCommand" id="oaattia_role_based_game.command.list_user_character_command">
+            <argument id="doctrine.orm.entity_manager" type="service"/>
+            <call method="setContainer">
+                <argument id="service_container" type="service"/>
+            </call>
+            <tag name="console.command"/>
+        </service>
+
+
+
+
     </services>
 
 </container>

@@ -69,6 +69,7 @@ class UserController extends ApiController
     public function patchCharacterAttackAction(Request $request, $userId)
     {
         $currentUser = $this->getCurrentAuthenticatedUser($request);
+
         try {
             if ($currentUser->getId() == $userId) {
                 return $this->respondForbiddenError("You can't attack yourself");
@@ -87,6 +88,7 @@ class UserController extends ApiController
             );
         }
 
+        return $this->respondOK([], 'Boom, Attack successfully placed');
 
     }
 
@@ -128,7 +130,7 @@ class UserController extends ApiController
     public function getDefeatedAction(Request $request)
     {
         $user = $this->getCurrentAuthenticatedUser($request);
-        
+
         $users = $this->getDoctrine()->getRepository(User::class)->findOtherDefeatedUsers($user->getId());
 
         if (empty($users)) {

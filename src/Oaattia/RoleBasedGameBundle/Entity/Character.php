@@ -213,6 +213,7 @@ class Character extends BaseEntity
 
     /**
      * Every character can be attacked by two points
+     * And got defeated if points less than or equal zero
      */
     public function attack()
     {
@@ -221,8 +222,15 @@ class Character extends BaseEntity
         }
 
         $this->defense = $this->defense - 2;
-        $this->status = 'attacked';
-        $this->nextTurn = true;
+
+        if ($this->defense <= 0) {
+            $this->status = 'defeated';
+            $this->nextTurn = false;
+        } else {
+            $this->status = 'attacked';
+            $this->nextTurn = true;
+        }
+
     }
 
 

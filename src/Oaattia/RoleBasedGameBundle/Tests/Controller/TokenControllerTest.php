@@ -8,6 +8,6 @@ class TokenControllerTest extends WebTestCase
 {
     public function testIndex()
     {
-        $this->createUser('oaatta@gmail.com', 'anyFuckenPassword');
+        $this->createUser('oaatta@gmail.com', 'someRandomPassoword');
     }
 }

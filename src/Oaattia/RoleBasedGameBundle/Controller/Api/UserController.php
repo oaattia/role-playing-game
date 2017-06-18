@@ -116,4 +116,33 @@ class UserController extends ApiController
         );
     }
 
+
+
+
+    /**
+     * Then method responsible for get the defeated users
+     *
+     * @param Request $request
+     * @return View|mixed
+     */
+    public function getDefeatedAction(Request $request)
+    {
+        $user = $this->getCurrentAuthenticatedUser($request);
+        
+        $users = $this->getDoctrine()->getRepository(User::class)->findOtherDefeatedUsers($user->getId());
+
+        if (empty($users)) {
+            return $this->respondNotFound("There is no users defeated yet");
+        }
+
+        return $this->respondOK(
+            [
+                'users' => $this->get('oaattia_role_based_game.transformers.user_transformer')->transform($users),
+            ]
+        );
+    }
+
+
+
+
 }

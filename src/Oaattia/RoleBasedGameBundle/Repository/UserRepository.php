@@ -41,10 +41,10 @@ class UserRepository extends EntityRepository implements UserLoaderInterface
     /**
      * find other ready users
      *
-     * @param $userId
+     * @param $currentUserId
      * @return User
      */
-    public function findOtherReadyUsers($userId)
+    public function findOtherReadyUsers($currentUserId)
     {
         $query = $this->createQueryBuilder('u');
 
@@ -53,6 +53,27 @@ class UserRepository extends EntityRepository implements UserLoaderInterface
             ->innerJoin('RoleBasedGameBundle:Character', 'c', 'WITH', 'u.id=c.user')
             ->where('u.id != :id')
             ->andWhere("c.status = 'ready'")
+            ->setParameter('id', $currentUserId);
+
+        return $query->getQuery()->getResult();
+    }
+
+
+    /**
+     * Find other defeated users
+     *
+     * @param $userId
+     * @return array
+     */
+    public function findOtherDefeatedUsers($userId)
+    {
+        $query = $this->createQueryBuilder('u');
+
+        $query
+            ->select('u')
+            ->innerJoin('RoleBasedGameBundle:Character', 'c', 'WITH', 'u.id=c.user')
+            ->where('u.id != :id')
+            ->andWhere("c.status = 'defeated'")
             ->setParameter('id', $userId);
 
         return $query->getQuery()->getResult();

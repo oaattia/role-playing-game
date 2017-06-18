@@ -31,6 +31,16 @@
         <service class="Oaattia\RoleBasedGameBundle\Security\TokenEncoderDecoder" id="oaattia_role_based_game.security.token_encoder_decoder" autowire="true" public="true" />
 
         <service class="Oaattia\RoleBasedGameBundle\Transformers\UserTransformer" id="oaattia_role_based_game.transformers.user_transformer" autowire="true" public="true" />
+
+
+        <service class="Oaattia\RoleBasedGameBundle\Command\ListUsersCommand" id="oaattia_role_based_game.command.list_users_command">
+            <argument id="doctrine.orm.entity_manager" type="service"/>
+            <call method="setContainer">
+                <argument id="service_container" type="service"/>
+            </call>
+            <tag name="console.command"/>
+        </service>
+
     </services>
 
 </container>

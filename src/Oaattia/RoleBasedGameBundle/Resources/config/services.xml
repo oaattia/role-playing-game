@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <!--
+    <services>
+        <service id="role_based_game.example" class="Oaattia\RoleBasedGameBundle\Example">
+            <argument type="service" id="service_id" />
+            <argument>plain_value</argument>
+            <argument>%parameter_name%</argument>
+        </service>
+    </services>
+    -->
+
+    <services>
+
+        <service class="Oaattia\RoleBasedGameBundle\DomainManager\UserManager" id="oaattia.role_based_game.user_manager" autowire="true" public="true" />
+        <service class="Oaattia\RoleBasedGameBundle\Requests\UserRegistrationRequest" id="oaattia.role_based_game.registration_request">
+                <argument id="security.user_password_encoder.generic" type="service"/>
+        </service>
+        <service class="Oaattia\RoleBasedGameBundle\Validator\Validation" id="oaattia_role_based_game.validator.validation" autowire="true" public="true" />
+
+        <service class="Oaattia\RoleBasedGameBundle\Security\TokenAuthenticator" id="oaattia.role_based_game_authenticator.token.authenticator" autowire="true" public="true" />
+
+        <service class="Oaattia\RoleBasedGameBundle\Requests\CharacterRequest" id="oaattia_role_based_game.requests.character_request" />
+
+        <service class="Oaattia\RoleBasedGameBundle\DomainManager\CharacterManager" id="oaattia_role_based_game.domain_manager.character_manager" autowire="true" public="true" />
+
+        <service class="Oaattia\RoleBasedGameBundle\Security\TokenEncoderDecoder" id="oaattia_role_based_game.security.token_encoder_decoder" autowire="true" public="true" />
+
+        <service class="Oaattia\RoleBasedGameBundle\Transformers\UserTransformer" id="oaattia_role_based_game.transformers.user_transformer" autowire="true" public="true" />
+    </services>
+
+</container>

@@ -1,0 +1,33 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+
+    encoders:
+            Oaattia\RoleBasedGameBundle\Entity\User: bcrypt
+
+
+#    providers:
+#        our_database_users:
+#            entity: { class: UserBundle:User }
+    providers:
+        database_user:
+            entity: { class: Oaattia\RoleBasedGameBundle\Entity\User }
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/api/
+            anonymous: true
+            stateless: true
+            guard:
+                authenticators:
+                    - 'oaattia.role_based_game_authenticator.token.authenticator'
+
+    access_control:
+            - { path: ^/api/user/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: ^/api/user/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: ^/api/,       roles: IS_AUTHENTICATED_FULLY }

@@ -1,0 +1,4 @@
+role_based_game:
+    resource: "@RoleBasedGameBundle/Resources/config/routing_api.yml"
+    type: rest
+    prefix: /api

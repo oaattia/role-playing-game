@@ -1,0 +1,15 @@
+role_based_game.users:
+    type: rest
+    resource: "@RoleBasedGameBundle/Controller/Api/UserController.php"
+    name_prefix: oaattia.role_based_game.
+
+role_based_game.registeration:
+    type: rest
+    resource: "@RoleBasedGameBundle/Controller/Api/AuthenticationController.php"
+    name_prefix: oaattia.role_based_game.
+
+role_based_game.character_role:
+    type: rest
+    resource: "@RoleBasedGameBundle/Controller/Api/CharacterController.php"
+    name_prefix: oaattia.role_based_game.
+

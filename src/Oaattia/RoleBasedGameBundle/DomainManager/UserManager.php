@@ -13,23 +13,16 @@ class UserManager
      * @var EntityManagerInterface
      */
     private $entityManager;
-    /**
-     * @var User
-     */
-    private $user;
 
     /**
      * UserManager constructor.
      *
      * @param EntityManagerInterface $entityManager
-     * @param User $user
      */
     public function __construct(
-        EntityManagerInterface $entityManager,
-        User $user
+        EntityManagerInterface $entityManager
     ) {
         $this->entityManager = $entityManager;
-        $this->user = $user;
     }
 
     /**

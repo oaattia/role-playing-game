@@ -23,7 +23,6 @@ abstract class FunctionalTest extends WebTestCase
      */
     protected function getAuthenticatedClient($email, $password)
     {
-//        $client = static::createClient();
         $this->client->request(
             'POST',
             '/api/user/register',
@@ -32,7 +31,6 @@ abstract class FunctionalTest extends WebTestCase
 
         $data = json_decode($this->client->getResponse()->getContent(), true);
 
-//        $client = static::createClient();
         $this->client->setServerParameter('HTTP_Authorization', sprintf('Bearer %s', $data['data']['token']));
 
         return $this->client;

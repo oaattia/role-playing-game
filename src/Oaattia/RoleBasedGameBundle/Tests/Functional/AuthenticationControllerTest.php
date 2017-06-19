@@ -79,5 +79,4 @@ class AuthenticationControllerTest extends FunctionalTest
         $this->assertRegexp('/User not found/', $this->client->getResponse()->getContent());
         $this->assertEquals(404, $this->client->getResponse()->getStatusCode());
     }
-
 }

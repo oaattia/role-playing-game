@@ -17,5 +17,13 @@ swiftmailer:
 
 doctrine:
     dbal:
-        driver: pdo_sqlite
-        path: '%kernel.cache_dir%/test.db'
+        driver: pdo_mysql
+        host:     localhost
+        dbname:   api_test
+        user:     homestead
+        password: secret
+        port: '%database_port%'
+        charset: UTF8
+        server_version: '5.7'
+        mapping_types:
+            enum: string

@@ -1,44 +1,47 @@
 <?php
 
-require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/app/AppKernel.php';
+require_once __DIR__.'/vendor/autoload.php';
+require_once __DIR__.'/app/AppKernel.php';
 
+use Doctrine\Bundle\DoctrineBundle\Command\CreateDatabaseDoctrineCommand;
+use Doctrine\Bundle\DoctrineBundle\Command\DropDatabaseDoctrineCommand;
+use Doctrine\Bundle\DoctrineBundle\Command\Proxy\UpdateSchemaDoctrineCommand;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 $kernel = new AppKernel('test', true);
 $kernel->boot();
 
 $application = new Application($kernel);
-$application->setAutoExit(false);
 
-deleteDatabase();
-executeCommand($application, "doctrine:database:create");
-executeCommand($application, "doctrine:schema:create");
+// drop database if found
+$command = new DropDatabaseDoctrineCommand();
+$application->add($command);
+$input = new ArrayInput(
+    [
+        'command' => 'doctrine:database:drop',
+        '--force' => true
+    ]
+);
+$command->run($input, new ConsoleOutput());
 
-/**
- * Execute Commands
- *
- * @param $application
- * @param $command
- * @param array $options
- */
-function executeCommand($application, $command, Array $options = array()) {
-    $options["--env"] = "test";
-    $options["--quiet"] = true;     // to remove verbose messages
-    $options = array_merge($options, array('command' => $command));
+// create database
+$command = new CreateDatabaseDoctrineCommand();
+$application->add($command);
+$input = new ArrayInput(
+    [
+        'command' => 'doctrine:database:create',
+        '--if-not-exists' => true
+    ]
+);
+$command->run($input, new ConsoleOutput());
 
-    $application->run(new ArrayInput($options));
-}
-
-/**
- * Delete the current created database
- */
-function deleteDatabase() {
-    $folder = __DIR__ . '/var/cache/test/';
-    foreach(array('test.db','test.db.bk') as $file){
-        if(file_exists($folder . $file)){
-            unlink($folder . $file);
-        }
-    }
-}
+ //create the schema
+$command = new UpdateSchemaDoctrineCommand();
+$application->add($command);
+$input = new ArrayInput([
+    'command' => 'doctrine:schema:update',
+    '--force' => true
+]);
+$command->run($input, new ConsoleOutput());

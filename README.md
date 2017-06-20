@@ -359,7 +359,9 @@ I have added a couple of commands :
 <center><img src="http://i.imgur.com/NmEYcb4.png" /></center>
 - React single page app to consume the api points, the folder called `public` and it's added in the directory root file, the idea will be that we will send a request to the auth endpoints and then get the token and save it in (localStorage or sessionStorage ), then we will proceed with other endpoints after that . 
 
+
 ***Note that it's not completed as i didn't have time***
+
 
 #### Requirements
 - nodejs

@@ -326,6 +326,6 @@ There is two folder to structure our tests, the first folder is `functional` and
 ### Commands
 I have listed a couple of commands : 
 - List User in our database with two optional paramters ( offset and limit ) 
-[Imgur](http://i.imgur.com/OfSzSUh.png)
+<img src="http://i.imgur.com/OfSzSUh.png" />
 
 ### FrontEnd App ( ReactJS ) 

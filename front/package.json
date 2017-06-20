@@ -1,13 +1,13 @@
 {
-  "name": "Front end app to consume the api from the server side",
+  "name": "RoleBasedCharacter",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "lodash": "^4.17.4",
     "parsleyjs": "^2.7.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.1.1",
+    "axios": "^0.16.2",
     "sweetalert": "^1.1.3"
   },
   "devDependencies": {

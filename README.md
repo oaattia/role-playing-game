@@ -92,7 +92,8 @@ All files in `src/Oaattia/RoleBaseGameBundle`
    * updated_at
  
 ### Endpoints
-#### Post /api/user/register ( register a new user ) 
+
+#### POST /api/user/register (register a new user) 
 * email
 * password
 **Success**
@@ -105,6 +106,219 @@ All files in `src/Oaattia/RoleBaseGameBundle`
     }
 }
 ```
+**Error**
+```json
+{
+    "code": 422,
+    "message": "Validation Error!",
+    "violations": {
+        "email": "This value is already used.",
+        "password": "This fields can't be blank"
+        
+    }
+}
+```
+
+
+#### POST /api/user/login (login a new user to the system) 
+* email
+* password
+**Success**
+```json
+{
+    "code": 200,
+    "message": "Successfully OK",
+    "data": {
+        "token": "RETURNED_TOKEN"
+    }
+}
+```
+**Error**
+```json
+{
+    "code": 422,
+    "message": "Validation Error!",
+    "violations": {
+        "email": "This value is already used.",
+        "password": "This fields can't be blank"
+        
+    }
+}
+```
+
+
+
+
+#### POST /api/characters (create a user's character) ( Authenticated ) 
+* title
+* attack
+* defense
+**Success**
+```json
+{
+    "code": 201,
+    "message": "Character for the user created",
+    "data": []
+}
+```
+**Errors**
+***if trying to create more than one character for the current user***
+```json
+{
+    "error": {
+        "code": 500,
+        "message": "You already added your character, you can only have one character"
+    }
+}
+```
+***if validation failed***
+```json
+{
+    "code": 422,
+    "message": "Validation Error!",
+    "violations": {
+        "title": "This value should not be blank.",
+        "attack": "This value should not be blank.",
+        "defense": "This value should not be blank."
+    }
+}
+```
+
+
+#### GET /api/users/{id}/character (list user character) ( Authenticated ) 
+
+**Success**
+```json
+{
+    "code": 201,
+    "message": "Successfully Created",
+    "data": {
+        "character": {
+            "title": "Bat Man",
+            "attack": 30,
+            "defense": 20
+        }
+    }
+}
+```
+**Errors**
+***if no user found***
+```json
+{
+    "error": {
+        "code": 404,
+        "message": "There is no user for the specified ID"
+    }
+}
+```
+
+
+
+#### GET /api/user/explore (Explore ready users) ( Authenticated ) 
+
+**Success**
+```json
+{
+    "code": 200,
+    "message": "Successfully OK",
+    "data": {
+        "users": [
+            {
+                "id": 2,
+                "email": "oaattia@gmail.com",
+                "character": {
+                    "title": "Bat Man",
+                    "attack": 30,
+                    "defense": 20,
+                    "status": "ready"
+                }
+            }
+        ]
+    }
+}
+```
+**Errors**
+***if no user found***
+```json
+{
+    "error": {
+        "code": 404,
+        "message": "There is no users ready for fighting"
+    }
+}
+```
+
+
+
+#### PATCH /api/users/{id}/character/attack (Attack other characters) ( Authenticated ) 
+
+**Success**
+```json
+{
+    "code": 200,
+    "message": "Boom, Attack successfully placed",
+    "data": []
+}
+```
+**Errors**
+***if no user found***
+```json
+{
+    "error": {
+        "code": 404,
+        "message": "The chosen user not found or not ready to be attacked"
+    }
+}
+```
+
+
+
+#### GET /api/user/defeated/ (List other deteated characters) ( Authenticated ) 
+
+**Success**
+```json
+{
+    "code": 200,
+    "message": "Successfully OK",
+    "data": {
+        "users": [
+            {
+                "id": 3,
+                "email": "test@test.com",
+                "character": {
+                    "title": " Super Man",
+                    "attack": 30,
+                    "defense": 12,
+                    "status": "defeated"
+                }
+            }
+        ]
+    }
+}
+```
+**Errors**
+***if auth failed***
+```json
+{
+    "error": {
+        "code": 401,
+        "message": "Authentication failed, you may want to generate a new token as it's already expired"
+    }
+}
+```
+
+***if there is no users found***
+```json
+{
+    "error": {
+        "code": 404,
+        "message": "There is no users defeated yet"
+    }
+}
+```
+
+
+
 
 ### Tests
 

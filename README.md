@@ -357,11 +357,12 @@ I have added a couple of commands :
 
 ### FrontEnd App ( ReactJS ) 
 <center><img src="http://i.imgur.com/NmEYcb4.png" /></center>
+<br/>
+
 - React single page app to consume the api points, the folder called `public` and it's added in the directory root file, the idea will be that we will send a request to the auth endpoints and then get the token and save it in (localStorage or sessionStorage ), then we will proceed with other endpoints after that . 
 
 
-***Note that it's not completed as i didn't have time***
-
+***NOTE: that it's not completed as i didn't have time to complete it***
 
 #### Requirements
 - nodejs
@@ -369,16 +370,17 @@ I have added a couple of commands :
 - yarn
 
 #### Installation
+
 ```bash
 $ cd front
 $ npm install or yarn install 
 ```
 
 #### Installed extra dependency by npm 
+
 - `parsleyjs` for form validation 
 - `react-router-dom` for routing in react 
 - `sweetalert` for show alert message in nice way
 - `axios` to do the requests
-
 - To run development type `yarn start` 
 - To run build for production `yarn production`

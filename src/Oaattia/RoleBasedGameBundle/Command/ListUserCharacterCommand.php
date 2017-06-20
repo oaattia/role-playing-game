@@ -7,7 +7,6 @@ use Oaattia\RoleBasedGameBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class ListUserCharacterCommand extends ContainerAwareCommand
@@ -29,6 +28,9 @@ class ListUserCharacterCommand extends ContainerAwareCommand
         $this->entityManager = $entityManager;
     }
 
+    /**
+     * Configure the command
+     */
     protected function configure()
     {
         $this
@@ -41,6 +43,14 @@ class ListUserCharacterCommand extends ContainerAwareCommand
             );
     }
 
+    /**
+     * Execute the commands
+     *
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     *
+     * @return int|null|void
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $header = [

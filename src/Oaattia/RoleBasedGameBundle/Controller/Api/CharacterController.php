@@ -5,7 +5,6 @@ namespace Oaattia\RoleBasedGameBundle\Controller\Api;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use Oaattia\RoleBasedGameBundle\Controller\ApiController;
-use Oaattia\RoleBasedGameBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 
 /**

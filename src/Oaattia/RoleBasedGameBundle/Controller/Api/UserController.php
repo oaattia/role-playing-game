@@ -59,7 +59,6 @@ class UserController extends ApiController
      * we should here perform attack on specific user's character
      * the attack will subtract two points from the defense
      * and change the status of the opponent to attacked
-     * and change the status of the attacker to attacking
      * if the user has no point then it's status should be defeated
      *
      * @param Request $request

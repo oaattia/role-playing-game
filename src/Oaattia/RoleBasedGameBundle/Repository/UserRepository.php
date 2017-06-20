@@ -2,9 +2,7 @@
 
 namespace Oaattia\RoleBasedGameBundle\Repository;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query\Parameter;
 use Oaattia\RoleBasedGameBundle\Entity\User;
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;

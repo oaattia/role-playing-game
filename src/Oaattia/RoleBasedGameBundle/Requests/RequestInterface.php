@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: oaattia
- * Date: 6/15/17
- * Time: 2:20 AM
- */
 
 namespace Oaattia\RoleBasedGameBundle\Requests;
 

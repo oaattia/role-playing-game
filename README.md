@@ -11,10 +11,13 @@ Role Playing Game Based On Symfony
 - [DoctrineMigrationsBundle](http://symfony.com/doc/current/bundles/DoctrineMigrationsBundle/index.html)
 
 ### Installation
-git clone the project first 
 
 ```bash
-composer install
+git clone https://github.com/oaattia/role-playing-game.git
+```
+Then
+```bash
+$ composer install
 ```
 
 This project uses [Json Web Token](https://jwt.io/introduction/)(JWT) for authentication, so we need to sign the tokens and rsa used for that.

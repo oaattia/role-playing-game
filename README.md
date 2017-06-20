@@ -324,8 +324,30 @@ There is two folder to structure our tests, the first folder is `functional` and
 - unit tests for smaller testing unit that deals with smaller unit in our code .
 
 ### Commands
-I have listed a couple of commands : 
+I have added a couple of commands : 
 - List User in our database with two optional paramters ( offset and limit ) 
 <img src="http://i.imgur.com/OfSzSUh.png" />
+- List characters related to specific user ( required argment ***user_id*** ) 
+ <img src="http://i.imgur.com/OfSzSUh.png" />
 
 ### FrontEnd App ( ReactJS ) 
+- React single page app to consume the api points, the folder called `public` and it's added in the directory root file 
+
+#### Requirements
+- nodejs
+- npm 
+- yarn
+
+#### Installation
+```bash
+$ cd front
+$ npm install or yarn install 
+```
+
+#### Installed extra dependency by npm 
+- `parsleyjs` for form validation 
+- `react-router-dom` for routing in react 
+- `sweetalert` for show alert message in nice way
+
+- To run development type `yarn start` 
+- To run build for production `yarn production`

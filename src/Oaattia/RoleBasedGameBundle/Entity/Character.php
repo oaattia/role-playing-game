@@ -38,6 +38,7 @@ class Character extends BaseEntity
      * @ORM\Column(name="attack", type="integer")
      * @Assert\Type(type="numeric")
      * @Assert\Length(max="20")
+     * @Assert\NotBlank()
      */
     private $attack;
 
@@ -47,6 +48,7 @@ class Character extends BaseEntity
      * @ORM\Column(name="defense", type="integer")
      * @Assert\Type(type="numeric")
      * @Assert\Length(max="20")
+     * @Assert\NotBlank()
      */
     private $defense;
 

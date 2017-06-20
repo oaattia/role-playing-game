@@ -37,7 +37,8 @@ lexik_jwt_authentication:
  
 ### How this work 
 The story will be like the following :
-- The user should first register to our api
+- The user should first register to our api and get a valid token. 
+- Also if the user is returned user can login and get a valid token also.
 - The user then create a role character ( like Batman or Wonder woman etc ) with two paramters attack and defense 
 - Every user should have only one character for now, may be implement a feature in the future to let every user to have many characters 
 - The user then consume our api to explore to search for the users with ready characters for fight, that leed us to define the main statues for our characters 

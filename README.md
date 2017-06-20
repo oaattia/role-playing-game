@@ -74,7 +74,7 @@ All files in `src/Oaattia/RoleBaseGameBundle`
 - `Validators` this class responsible for handle the validations errors 
 
  ### Database structure
- - ser 
+ - user 
    * id
    * email
    * password
@@ -91,7 +91,20 @@ All files in `src/Oaattia/RoleBaseGameBundle`
    * created_at
    * updated_at
  
-### API Documentation
+### Endpoints
+#### Post /api/user/register ( register a new user ) 
+* email
+* password
+**Success**
+```json
+{
+    "code": 201,
+    "message": "User created and authenticated",
+    "data": {
+        "token": "RETURNED_TOKEN"
+    }
+}
+```
 
 ### Tests
 

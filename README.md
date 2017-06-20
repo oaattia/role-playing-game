@@ -34,6 +34,11 @@ lexik_jwt_authentication:
     token_ttl:        '%jwt_token_ttl%'
 ```
 *It's not a good idea to share those keys for security reasons so i removed them from git .* 
+
+Run after that the migrations
+```bash
+$ ./bin/console doctrine:migrations:migrate  
+```
  
 ### How this work 
 The story will be like the following :
@@ -54,8 +59,37 @@ The story will be like the following :
 
 ### Code Structure
 All files in `src/Oaattia/RoleBaseGameBundle`
+- `Command` contain the command console for our application 
+- `Controller` contains the controllers 
+- `DependencyInjection` Dependency Injection related file that shipped with symfony 
+- `Domain Manager` The project orgranized around Domain Manager DDD ( domain driven design ) that split the interaction with the database to external domain 
+- `Entity`
+- `Exceptions` to add all the exception classes related to our project.
+- `Repository` to perform queries to the database 
+- `Request` to handle the requests for specific request related to the controller, and see the data before presisting it 
+- `Resources`
+- `Security`
+- `Tests`
+- `Transformers` this classes used to map the result for the response to specific values 
+- `Validators` this class responsible for handle the validations errors 
 
  ### Database structure
+ - ser 
+   * id
+   * email
+   * password
+   * created_at
+   * updated_at
+- character
+   * id
+   * user_id
+   * title
+   * attack
+   * defense
+   * status 
+   * next_turn
+   * created_at
+   * updated_at
  
 ### API Documentation
 

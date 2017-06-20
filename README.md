@@ -318,10 +318,14 @@ All files in `src/Oaattia/RoleBaseGameBundle`
 ```
 
 
-
-
 ### Tests
+There is two folder to structure our tests, the first folder is `functional` and `unit`
+- functional tests deals with testing the endpoints and loading the data from the database ( test database ), there is bootstrap file in the test directory that contain some commands to run before every tests, first we drop the database, then we create a new database then update schema . 
+- unit tests for smaller testing unit that deals with smaller unit in our code .
 
 ### Commands
+I have listed a couple of commands : 
+- List User in our database with two optional paramters ( offset and limit ) 
+<img src="http://imgur.com/a/TZ7ai" alt="list all uses" />
 
 ### FrontEnd App ( ReactJS ) 
